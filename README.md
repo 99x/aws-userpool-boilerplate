@@ -19,13 +19,5 @@ Using a user pool gives you detailed control over the sign-up and sign-in aspect
 
 Coming soon.
 
-##Todo
-
-1. Guide on creating a user pool on aws console- (creating new pool and getting credentials. Downloading and installing the sdk)
-2. High level project architecture diagram 
-3. Basic html signup page with cognito user pool enabled
-4. Basic login page
-5. User Verification process (JavaScript inside the login page)
-6. Simple dashboard page retrieving credentials from user pool
 
 *We'll be using bootstrap as the base for the front end 
