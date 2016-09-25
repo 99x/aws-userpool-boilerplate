@@ -1,5 +1,7 @@
 # AWS Cognito User Pool- Boilerplate
 
+[![Join the chat at https://gitter.im/aws-userpool-boilerplate/Lobby](https://badges.gitter.im/aws-userpool-boilerplate/Lobby.svg)](https://gitter.im/aws-userpool-boilerplate/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A Simplistic way to getting started with Cognito User Pools
 
 ## What's this User Pool? 
