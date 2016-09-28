@@ -14,6 +14,11 @@ Using a user pool gives you detailed control over the sign-up and sign-in aspect
 
  [Read More](https://aws.amazon.com/blogs/aws/new-user-pools-for-amazon-cognito/)
  
+## High level architecture diagram for Boilerplate
+
+<img src="https://cloud.githubusercontent.com/assets/5123109/18832830/2a5bcea2-840b-11e6-83a3-2a1c97db4283.png" width="800px">
+
+
  
 ## Getting Started
 
