@@ -22,7 +22,45 @@ Using a user pool gives you detailed control over the sign-up and sign-in aspect
  
 ## Getting Started
 
-Coming soon.
+### Creating a Cognito User Pool in AWS Console
+Login to your AWS Console and in Services list Select : Cognito
+<br>
+<br>
+<img src="https://raw.githubusercontent.com/99xt/aws-userpool-boilerplate/master/documentation/cognito%20services.png" width="100px">
 
+**Step 1
+You will be directed to the main Cognito Dashboard like below.**
+
+Now Select 'Manage Your User Pools'
+<br>
+<br>
+<img src="https://raw.githubusercontent.com/99xt/aws-userpool-boilerplate/master/documentation/select%20user%20pool.png">
+
+**Step 2 On the Right corner click "Create a User Pool"**
+
+Enter a Pool name,
+<br>
+<br>
+<img src="https://raw.githubusercontent.com/99xt/aws-userpool-boilerplate/master/documentation/pool%20name.png">
+
+<br>
+<br>
+Then Select the attributes you need (you can select from the standard attributes),
+<br>
+<br>
+<img src="https://raw.githubusercontent.com/99xt/aws-userpool-boilerplate/master/documentation/attributes.png">
+
+Policies: you can add constraints for the password strength
+Verifications: Email verification message can be customized (can be edited later.)
+Triggers: You can choose custom Lambda triggers when events occur like (verification, pre signup)
+
+In the Review tab you can see your configuration and Create the pool.
+<br>
+<br>
+<img src="https://raw.githubusercontent.com/99xt/aws-userpool-boilerplate/master/documentation/review.png">
+<br>
+<br>
+
+*Yay! Now you have created a AWS Cognito User Pool.*
 
 *We'll be using bootstrap as the base for the front end 
