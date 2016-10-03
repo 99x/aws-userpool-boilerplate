@@ -1,0 +1,154 @@
+<html>
+
+<head>
+    <title>Login</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    <a class="navbar-brand" href="#">AWS User Pool Boilerplate</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="./page_base.html">Readme</a>
+                        </li>
+                        <li>
+                            <a href="./login.html">Login</a>
+                        </li>
+                        <li class="active">
+                            <a href="./register.html">Register</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+            <!--/.container-fluid -->
+        </nav>
+
+        <div class="col-md-3"></div>
+
+        <div class=" well panel panel-default col-md-6">
+
+            <div class="panel-body">
+                <center>
+                    <h1>Register</h1>
+                    <br>
+                </center>
+                <form class="form-horizontal">
+                    <fieldset>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="email">Email</label>
+                            <div class="col-md-6">
+                                <input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" required="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="email">Name</label>
+                            <div class="col-md-6">
+                                <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
+                            </div>
+                        </div>
+
+                        <!-- Password input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="password">Password</label>
+                            <div class="col-md-6">
+                                <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div>
+                            <label class="col-md-4 control-label" for="login"></label>
+                            <div class="col-md-4">
+                                <button onclick="onClick();return false;" class="btn btn-lg btn-success">Register</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- /container -->
+
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
+
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <script src="assets/js/jsbn.js"></script>
+    <script src="assets/js/jsbn2.js"></script>
+    <script src="assets/js/sjcl.js"></script>
+    <script src="assets/js/aws-cognito-sdk.min.js"></script>
+    <script src="assets/js/amazon-cognito-identity.min.js"></script>
+    <script src="assets/js/aws-sdk-2.5.0.min.js"></script>
+
+    <script>
+        function onClick() {
+            AWSCognito.config.region = 'eu-west-1';
+
+            var email = document.getElementById("email").value;
+            var name = document.getElementById("name").value;
+            var pass = document.getElementById("password").value;
+
+            var poolData = {
+                UserPoolId: 'eu-west-1_ZoHJNu0UM', // your user pool id here
+                ClientId: '6suoip8tmdsgv8gi64m42l9493' // your app client id here
+            };
+
+            var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+
+            var attributeList = [];
+
+            var dataEmail = {
+                Name: 'email',
+                Value: email // your email here
+            };
+            var dataName = {
+                Name: 'name',
+                Value: name // your name here
+            };
+            var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
+            var attributeName = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataName);
+
+            attributeList.push(attributeName);
+            attributeList.push(attributeEmail);
+
+            var cognitoUser;
+
+            userPool.signUp(email, pass, attributeList, null, function(err, result) {
+                if (err) {
+                    alert(err);
+                    return;
+                }
+                cognitoUser = result.user;
+
+                $(".well").prepend('<div class="alert alert-success"> <strong>Successfully registered !<br></strong> A confirmation code has been sent to <strong>' + email +
+                    '</strong> please click <a href="./verify.html"><strong>here</strong></a> and verify before logging in. <br><br>Thank You!. </div>');
+                //alert('user created and user name is ' + cognitoUser.getUsername());
+            });
+        };
+
+    </script>
+
+</body>
+
+</html>
