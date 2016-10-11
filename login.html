@@ -36,6 +36,9 @@
                             <li>
                                 <a href="./verify.html">Verify</a>
                             </li>
+                             <li>
+                                <a href="./restricted.html"><i class="glyphicon glyphicon-lock"></i> Restricted Page</a>
+                            </li>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->
@@ -76,7 +79,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="login"></label>
                                 <div class="col-md-4">
-                                    <button id="login" name="login" class="btn btn-lg btn-primary">Login</button>
+                                    <button onclick="login();return false;" class="btn btn-lg btn-primary">Login</button>
                                 </div>
                             </div>
 
@@ -92,6 +95,54 @@
         <script src="assets/js/jquery-3.1.1.min.js"></script>
 
         <script src="assets/js/bootstrap.min.js"></script>
+
+                <script src="assets/js/jsbn.js"></script>
+        <script src="assets/js/jsbn2.js"></script>
+        <script src="assets/js/sjcl.js"></script>
+        <script src="assets/js/aws-cognito-sdk.min.js"></script>
+        <script src="assets/js/amazon-cognito-identity.min.js"></script>
+        <script src="assets/js/aws-sdk-2.5.0.min.js"></script>
+
+
+        <script type="text/javascript">
+            
+        function login(){
+
+                AWSCognito.config.region = 'eu-west-1';
+
+                        var username = document.getElementById("email").value;
+                        var password = document.getElementById("password").value;
+
+
+                var authenticationData = {
+                    Username : username,
+                    Password : password,
+                };
+                var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
+                var poolData = {
+                    UserPoolId: 'eu-west-1_ZoHJNu0UM', // your user pool id here
+                    ClientId: '6suoip8tmdsgv8gi64m42l9493' // your app client id here
+                };
+                var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+                var userData = {
+                    Username : username,
+                    Pool : userPool
+                };
+                var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+                cognitoUser.authenticateUser(authenticationDetails, {
+                    onSuccess: function (result) {
+                        console.log('Access Token + ' + result.getAccessToken().getJwtToken());
+                        window.location= "./restricted.html";
+                    },
+                    onFailure: function(err) {
+                        alert(err);
+                    },
+
+                });
+
+        }
+
+        </script>
 
     </body>
 

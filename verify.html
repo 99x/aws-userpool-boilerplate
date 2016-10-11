@@ -36,6 +36,9 @@
                             <li class="active">
                                 <a href="./verify.html">Verify</a>
                             </li>
+                             <li>
+                                <a href="./restricted.html"><i class="glyphicon glyphicon-lock"></i> Restricted Page</a>
+                            </li>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->
@@ -45,7 +48,7 @@
 
             <div class="col-md-3"></div>
 
-            <div class=" well panel panel-default col-md-6">
+            <div class="well panel panel-default col-md-6">
 
                 <div class="panel-body">
                     <center>
@@ -122,10 +125,14 @@
 
                 cognitoUser.confirmRegistration(verification, true, function(err, result) {
                     if (err) {
-                        alert(err)
+                         $(".well").prepend('<div class="alert alert-danger"> <strong>Something went Wrong !<br></strong>'+err+'</div>');
                         return;
+                    }else{
+                        $(".well").prepend('<div class="alert alert-success"> <strong>Successfully Verified !<br></strong> Now you can login : please click <a href="./login.html"><strong>here</strong></a><br>Thank You!. </div>');
                     }
-                    alert(result);
+
+                     
+
                 });
 
             };
