@@ -16,11 +16,11 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href="#">AWS User Pool Boilerplate</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
@@ -36,6 +36,9 @@
                         </li>
                         <li>
                             <a href="./verify.html">Verify</a>
+                        </li>
+                        <li>
+                            <a href="./restricted.html"><i class="glyphicon glyphicon-lock"></i> Restricted Page</a>
                         </li>
                     </ul>
                 </div>
@@ -140,16 +143,17 @@
 
             userPool.signUp(email, pass, attributeList, null, function(err, result) {
                 if (err) {
-                    alert(err);
+                    $(".well").prepend('<div class="alert alert-danger"> <strong>Something went Wrong !<br></strong>' + err + '</div>');
                     return;
-                }
-                cognitoUser = result.user;
+                } else {
+                    cognitoUser = result.user;
 
-                $(".well").prepend('<div class="alert alert-success"> <strong>Successfully registered !<br></strong> A confirmation code has been sent to <strong>' + email +
-                    '</strong> please click <a href="./verify.html"><strong>here</strong></a> and verify before logging in. <br><br>Thank You!. </div>');
+                    $(".well").prepend('<div class="alert alert-success"> <strong>Successfully registered !<br></strong> A confirmation code has been sent to <strong>' + email +
+                        '</strong> please click <a href="./verify.html"><strong>here</strong></a> and verify before logging in. <br><br>Thank You!. </div>');
+                }
+
             });
         };
-
     </script>
 
 </body>
