@@ -1,7 +1,8 @@
 <html>
 
 <head>
-    <title>Login</title>
+    <title>Register</title>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -15,11 +16,11 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href="#">AWS User Pool Boilerplate</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
@@ -32,6 +33,12 @@
                         </li>
                         <li class="active">
                             <a href="./register.html">Register</a>
+                        </li>
+                        <li>
+                            <a href="./verify.html">Verify</a>
+                        </li>
+                        <li>
+                            <a href="./restricted.html"><i class="glyphicon glyphicon-lock"></i> Restricted Page</a>
                         </li>
                     </ul>
                 </div>
@@ -78,7 +85,7 @@
                         <div>
                             <label class="col-md-4 control-label" for="login"></label>
                             <div class="col-md-4">
-                                <button onclick="onClick();return false;" class="btn btn-lg btn-success">Register</button>
+                                <button onclick="registerUser();return false;" class="btn btn-lg btn-success">Register</button>
                             </div>
                         </div>
 
@@ -102,7 +109,7 @@
     <script src="assets/js/aws-sdk-2.5.0.min.js"></script>
 
     <script>
-        function onClick() {
+        function registerUser() {
             AWSCognito.config.region = 'eu-west-1';
 
             var email = document.getElementById("email").value;
@@ -120,11 +127,11 @@
 
             var dataEmail = {
                 Name: 'email',
-                Value: email // your email here
+                Value: email // Email from Text field Here 
             };
             var dataName = {
                 Name: 'name',
-                Value: name // your name here
+                Value: name // Name from Text field Here 
             };
             var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
             var attributeName = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataName);
@@ -136,17 +143,17 @@
 
             userPool.signUp(email, pass, attributeList, null, function(err, result) {
                 if (err) {
-                    alert(err);
+                    $(".well").prepend('<div class="alert alert-danger"> <strong>Something went Wrong !<br></strong>' + err + '</div>');
                     return;
-                }
-                cognitoUser = result.user;
+                } else {
+                    cognitoUser = result.user;
 
-                $(".well").prepend('<div class="alert alert-success"> <strong>Successfully registered !<br></strong> A confirmation code has been sent to <strong>' + email +
-                    '</strong> please click <a href="./verify.html"><strong>here</strong></a> and verify before logging in. <br><br>Thank You!. </div>');
-                //alert('user created and user name is ' + cognitoUser.getUsername());
+                    $(".well").prepend('<div class="alert alert-success"> <strong>Successfully registered !<br></strong> A confirmation code has been sent to <strong>' + email +
+                        '</strong> please click <a href="./verify.html"><strong>here</strong></a> and verify before logging in. <br><br>Thank You!. </div>');
+                }
+
             });
         };
-
     </script>
 
 </body>
