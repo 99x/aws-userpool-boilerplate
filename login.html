@@ -1,149 +1,147 @@
 <html>
 
-    <head>
-        <title>Login</title>
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+<head>
+    <title>Login</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <div class="container">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">AWS User Pool Boilerplate</a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li >
-                                <a href="./page_base.html">Readme</a>
-                            </li>
-                            <li class="active">
-                                <a href="./login.html">Login</a>
-                            </li>
-                            <li>
-                                <a href="./register.html">Register</a>
-                            </li>
-                            <li>
-                                <a href="./verify.html">Verify</a>
-                            </li>
-                             <li>
-                                <a href="./restricted.html"><i class="glyphicon glyphicon-lock"></i> Restricted Page</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--/.nav-collapse -->
+                    <a class="navbar-brand" href="#">AWS User Pool Boilerplate</a>
                 </div>
-                <!--/.container-fluid -->
-            </nav>
-
-            <div class="col-md-3"></div>
-
-            <div class=" well panel panel-default col-md-6">
-                <div class="panel-body">
-                    <center>
-                        <h1>Login</h1>
-                        <br>
-                    </center>
-                    <form class="form-horizontal">
-                        <fieldset>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="email">Email</label>
-                                <div class="col-md-6">
-                                    <input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" required="">
-
-                                </div>
-                            </div>
-
-                            <!-- Password input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="password">Password</label>
-                                <div class="col-md-6">
-                                    <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
-
-                                </div>
-                            </div>
-
-                            <!-- Button -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="login"></label>
-                                <div class="col-md-4">
-                                    <button onclick="login();return false;" class="btn btn-lg btn-primary">Login</button>
-                                </div>
-                            </div>
-
-                        </fieldset>
-                    </form>
-
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="./index.html">Readme</a>
+                        </li>
+                        <li class="active">
+                            <a href="./login.html">Login</a>
+                        </li>
+                        <li>
+                            <a href="./register.html">Register</a>
+                        </li>
+                        <li>
+                            <a href="./verify.html">Verify</a>
+                        </li>
+                        <li>
+                            <a href="./restricted.html"><i class="glyphicon glyphicon-lock"></i> Restricted Page</a>
+                        </li>
+                    </ul>
                 </div>
+                <!--/.nav-collapse -->
             </div>
+            <!--/.container-fluid -->
+        </nav>
 
+        <div class="col-md-3"></div>
+
+        <div class=" well panel panel-default col-md-6">
+            <div class="panel-body">
+                <center>
+                    <h1>Login</h1>
+                    <br>
+                </center>
+                <form class="form-horizontal">
+                    <fieldset>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="email">Email</label>
+                            <div class="col-md-6">
+                                <input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" required="">
+
+                            </div>
+                        </div>
+
+                        <!-- Password input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="password">Password</label>
+                            <div class="col-md-6">
+                                <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
+
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="login"></label>
+                            <div class="col-md-4">
+                                <button onclick="login();return false;" class="btn btn-lg btn-primary">Login</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
         </div>
-        <!-- /container -->
 
-        <script src="assets/js/jquery-3.1.1.min.js"></script>
+    </div>
+    <!-- /container -->
 
-        <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
 
-                <script src="assets/js/jsbn.js"></script>
-        <script src="assets/js/jsbn2.js"></script>
-        <script src="assets/js/sjcl.js"></script>
-        <script src="assets/js/aws-cognito-sdk.min.js"></script>
-        <script src="assets/js/amazon-cognito-identity.min.js"></script>
-        <script src="assets/js/aws-sdk-2.5.0.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
-
-        <script type="text/javascript">
-            
-        function login(){
-
-                AWSCognito.config.region = 'eu-west-1';
-
-                        var username = document.getElementById("email").value;
-                        var password = document.getElementById("password").value;
+    <script src="assets/js/jsbn.js"></script>
+    <script src="assets/js/jsbn2.js"></script>
+    <script src="assets/js/sjcl.js"></script>
+    <script src="assets/js/aws-cognito-sdk.min.js"></script>
+    <script src="assets/js/amazon-cognito-identity.min.js"></script>
+    <script src="assets/js/aws-sdk-2.5.0.min.js"></script>
 
 
-                var authenticationData = {
-                    Username : username,
-                    Password : password,
-                };
-                var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
-                var poolData = {
-                    UserPoolId: 'eu-west-1_ZoHJNu0UM', // your user pool id here
-                    ClientId: '6suoip8tmdsgv8gi64m42l9493' // your app client id here
-                };
-                var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-                var userData = {
-                    Username : username,
-                    Pool : userPool
-                };
-                var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
-                cognitoUser.authenticateUser(authenticationDetails, {
-                    onSuccess: function (result) {
-                        console.log('Access Token + ' + result.getAccessToken().getJwtToken());
-                        window.location= "./restricted.html";
-                    },
-                    onFailure: function(err) {
-                        alert(err);
-                    },
+    <script type="text/javascript">
+        function login() {
 
-                });
+            AWSCognito.config.region = 'eu-west-1';
+
+            var username = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+
+            var authenticationData = {
+                Username: username,
+                Password: password,
+            };
+            var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
+            var poolData = {
+                UserPoolId: 'eu-west-1_ZoHJNu0UM', // your user pool id here
+                ClientId: '6suoip8tmdsgv8gi64m42l9493' // your app client id here
+            };
+            var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+            var userData = {
+                Username: username,
+                Pool: userPool
+            };
+            var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+            cognitoUser.authenticateUser(authenticationDetails, {
+                onSuccess: function(result) {
+                    console.log('Access Token + ' + result.getAccessToken().getJwtToken());
+                    window.location = "./restricted.html";
+                },
+                onFailure: function(err) {
+                    alert(err);
+                },
+
+            });
 
         }
+    </script>
 
-        </script>
-
-    </body>
+</body>
 
 </html>
