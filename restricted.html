@@ -37,7 +37,7 @@
                         </li>
 
                         <li class="active">
-                            <a href="./restricted.html"><i class="glyphicon glyphicon-lock"></i> Restricted Page</a>
+                            <a href="./restricted.html"><i class="glyphicon glyphicon-lock" id="res-icon" style="color:red"></i> Restricted Page</a>
                         </li>
                     </ul>
                 </div>
@@ -48,15 +48,24 @@
 
         <div class="col-md-3"></div>
 
-        <div class="well panel panel-default col-md-6">
+        <div class="well panel panel-danger col-md-6">
+
+            <button class="btn btn-danger" style="float:right" onclick = "signout();">Sign Out</button>
+
 
             <div class="panel-body">
                 <center>
                     <h1>Restricted Area</h1>
                     <h2>Example-Dashboard</h2>
-                    <h3>You are logged in as:</h3>
-                    <h4 id="name">name</h4>
-                    <h4 id="email">email</h4>
+
+                    <h2 id="not_logged" class="label label-danger" style="font-size:20px">User Not Logged In</h2>
+
+                    <h2 id="logged" class="label label-success" style="font-size:20px">User Logged In</h2>
+                    <div id="data"> 
+                        <h3>You are logged in as:</h3>
+                        <h4 id="name">name</h4>
+                        <h4 id="email">email</h4>
+                    </div>
                     <br>
                 </center>
 
@@ -78,6 +87,7 @@
     <script src="assets/js/aws-sdk-2.5.0.min.js"></script>
 
     <script>
+
         AWSCognito.config.region = 'eu-west-1';
 
         var poolData = {
@@ -94,7 +104,13 @@
                     alert(err);
                     return;
                 }
+            
+                $("#not_logged").css("display","none");
+                $("#res-icon").css("color","green");
             });
+        }else{
+             $("#logged").css("display","none");
+             $("#data").css("display","none");
         }
 
         cognitoUser.getUserAttributes(function(err, result) {
@@ -106,6 +122,14 @@
             document.getElementById("name").innerHTML = result[2].getValue();
             document.getElementById("email").innerHTML = result[3].getValue();
         });
+
+        function signout () {
+            if (cognitoUser != null) {
+               cognitoUser.signOut();
+               location.reload();
+            }
+
+        }
     </script>
 
 </body>
