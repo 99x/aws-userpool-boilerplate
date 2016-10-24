@@ -24,7 +24,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="./page_base.html">Readme</a>
+                            <a href="./index.html">Readme</a>
                         </li>
                         <li>
                             <a href="./login.html">Login</a>
@@ -53,7 +53,10 @@
             <div class="panel-body">
                 <center>
                     <h1>Restricted Area</h1>
-                    <h3>Example-Dashboard</h3>
+                    <h2>Example-Dashboard</h2>
+                    <h3>You are logged in as:</h3>
+                    <h4 id="name">name</h4>
+                    <h4 id="email">email</h4>
                     <br>
                 </center>
 
@@ -75,40 +78,36 @@
     <script src="assets/js/aws-sdk-2.5.0.min.js"></script>
 
     <script>
-        $("button").click(function(event) {
-            event.preventDefault();
-        });
+        AWSCognito.config.region = 'eu-west-1';
 
-        function verify() {
-            AWSCognito.config.region = 'eu-west-1';
-
-            var email = document.getElementById("email").value;
-            var verification = document.getElementById("Verification").value;
-
-            var poolData = {
-                UserPoolId: 'eu-west-1_ZoHJNu0UM', // your user pool id here
-                ClientId: '6suoip8tmdsgv8gi64m42l9493' // your app client id here
-            };
-            var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-            var userData = {
-                Username: email,
-                Pool: userPool
-            };
-
-            var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
-
-            cognitoUser.confirmRegistration(verification, true, function(err, result) {
-                if (err) {
-                    $(".well").prepend('<div class="alert alert-danger"> <strong>Something went Wrong !<br></strong>' + err + '</div>');
-                    return;
-                } else {
-                    $(".well").prepend('<div class="alert alert-success"> <strong>Successfully Verified !<br></strong> Now you can login : please click <a href="./login.html"><strong>here</strong></a><br>Thank You!. </div>');
-                }
-
-            });
-
+        var poolData = {
+            UserPoolId: 'eu-west-1_ZoHJNu0UM', // your user pool id here
+            ClientId: '6suoip8tmdsgv8gi64m42l9493' // your app client id here
         };
+
+        var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+        var cognitoUser = userPool.getCurrentUser();
+
+        if (cognitoUser != null) {
+            cognitoUser.getSession(function(err, session) {
+                if (err) {
+                    alert(err);
+                    return;
+                }
+            });
+        }
+
+        cognitoUser.getUserAttributes(function(err, result) {
+            if (err) {
+                alert(err);
+                return;
+            }
+
+            document.getElementById("name").innerHTML = result[2].getValue();
+            document.getElementById("email").innerHTML = result[3].getValue();
+        });
     </script>
 
 </body>
+
 </html>
