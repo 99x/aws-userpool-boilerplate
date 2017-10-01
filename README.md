@@ -64,3 +64,24 @@ In the Review tab you can see your configuration and Create the pool.
 *Yay! Now you have created a AWS Cognito User Pool.*
 
 *We'll be using bootstrap as the base for the front end 
+
+
+**License"**
+
+This repository is under the terms of the [MIT License](http://opensource.org/licenses/MIT). 
+
+Explained in plain english: It is a short, permissive software license. Basically, you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.  There are many variations of this license in use.
+
+You can:
+ · Use for Commercial purposes
+ · Modify
+ · Distribute
+ · Sublicense
+ · Use it for Private purposes
+ 
+You must:
+ · Include copyright
+ · Include license
+ 
+You cannot:
+· Hold the author liable.
